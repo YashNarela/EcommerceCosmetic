@@ -1,0 +1,118 @@
+// styles.scss
+
+.listing-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f5f5;
+
+  .sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-section {
+      margin-bottom: 1.5rem;
+
+      h4 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 0.95rem;
+
+        input {
+          margin-right: 0.5rem;
+        }
+      }
+
+      .price-values {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .product-listing {
+    flex: 1;
+
+    .sort-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      span {
+        margin-right: 0.5rem;
+        font-weight: 500;
+      }
+
+      select {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+
+      .product-card {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 6px;
+        }
+
+        h3 {
+          font-size: 1rem;
+          margin: 0.5rem 0;
+          color: #333;
+        }
+
+        p {
+          font-size: 0.95rem;
+          color: #111;
+
+          .discount {
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+            color: #888;
+          }
+
+          .offer {
+            margin-left: 0.5rem;
+            color: #388e3c;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

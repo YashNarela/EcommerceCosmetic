@@ -1,0 +1,18 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header_animation {
+  background-color: #f8f4f1;
+
+  a {
+    color: black;
+  }
+
+  marquee {
+    background: linear-gradient(to right, #cac531, #f3f9a7);
+  }
+}

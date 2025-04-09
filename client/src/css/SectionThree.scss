@@ -1,0 +1,33 @@
+.section5ParagraphImage {
+  margin: 1rem;
+  .section5PIcontent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(237px, 1fr));
+    margin: auto;
+    place-items: center;
+    padding: 2rem;
+    grid-column-gap: 2rem;
+    background: linear-gradient(to right, #ffefba, #ffffff);
+
+    color: rgb(18, 18, 18);
+    .sect5gridbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      justify-content: center;
+
+      img {
+        max-width: 160px;
+        height: auto;
+      }
+
+      p {
+        max-width: 402px;
+        color: rgba(18, 18, 18, 0.75);
+        text-align: center;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

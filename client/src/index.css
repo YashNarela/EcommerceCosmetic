@@ -1,0 +1,17 @@
+.layoutTopBox{
+
+
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+
+
+}
+
+.layoutBottomBox{
+
+
+    position: relative;
+    bottom: 0px;
+    
+}

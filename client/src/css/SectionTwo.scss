@@ -1,0 +1,47 @@
+.section4grid {
+  display: grid;
+  margin-top: 2rem;
+
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-row-gap: 2rem;
+
+  place-items: center;
+
+  .section4ImgbtnAnchor {
+    text-decoration: none;
+    color: white;
+  }
+
+  .section4Imgheight {
+    height: 330px;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin-top: 1.2rem;
+  }
+
+  img {
+    width: 220px;
+    transition: all 1s;
+    border-radius: 6px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  p {
+    margin: 4px;
+    font-weight: 700;
+    margin-bottom: 0.87rem;
+  }
+  button {
+    width: 100%;
+    padding: 6px;
+
+    background-color: black;
+    color: white;
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+}

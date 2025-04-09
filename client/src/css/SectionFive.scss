@@ -1,0 +1,33 @@
+.section9subscribe {
+  background: linear-gradient(to right, #ede574, #e1f5c4);
+  padding: 2rem;
+  .section9subscribeinside {
+    h1 {
+      font-size: 3.2rem;
+    }
+    text-align: center;
+    p {
+      margin: 1rem;
+      font-size: 1.3rem;
+    }
+    .section9input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      input {
+        padding: 8px 1.1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: black;
+      }
+
+      .section9inputarrow {
+        i {
+          font-size: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
