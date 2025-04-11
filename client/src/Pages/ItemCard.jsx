@@ -69,7 +69,7 @@ const ItemCard = () => {
                         </div>
                     </div>
 
-                    <div class="product-size">
+                    {/* <div class="product-size">
                         <span>Size: <strong>37</strong></span>
                         <div class="sizes">
                             <span class="size">35</span>
@@ -79,7 +79,7 @@ const ItemCard = () => {
                             <span class="size">39</span>
                             <span class="size">40</span>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div class="product-actions">
                         <button class="add-to-cart">Add to cart</button>

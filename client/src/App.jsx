@@ -42,7 +42,7 @@ function App() {
             <Route path='register' element={<Register />} />
             <Route path='cartitem' element={<CartItem />} />
             <Route path='product/:id' element={<DetailImageCard />} />
-         
+            <Route path='category' element={<CategoryPage />} />
 
             <Route path='/slice' element={<Slice />} />
 
@@ -53,8 +53,13 @@ function App() {
           <Route path='cart' element={<AddToCart />} />
           <Route path='detailitem' element={<DetailImageCard />} />
           <Route path='itemcard' element={<ItemCard />} />
-          <Route path='board' element={<Board />} />
-          <Route path='category' element={<CategoryPage />} />
+          <Route path='board' element={<Board />} >
+          
+            <Route path='cards' element={<CartItem />} />
+
+
+          </Route>
+          
 
 
         </Routes>

@@ -4,6 +4,7 @@ import "../css/Board.scss"
 
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
+import { Outlet } from 'react-router';
 
 const barData = [
     { name: "Jan", visits: 8 }, { name: "Feb", visits: 18 }, { name: "Mar", visits: 30 },
@@ -24,14 +25,17 @@ const Board = () => {
     return (
         <div className="dashboard">
             <aside className="sidebar">
-                <h2>Mazer</h2>
+                <h2>Admin</h2>
                 <nav>
                     <button className="active">Dashboard</button>
-                    <button>Components</button>
-                    <button>Layouts</button>
-                    <button>Forms & Tables</button>
+                    <button>Add Product</button>
+                    <button>Track Order</button>
+                    <button>Total Revenue </button>
                 </nav>
             </aside>
+
+
+            <Outlet/>
 
             <main className="main-content">
                 <section className="stats">

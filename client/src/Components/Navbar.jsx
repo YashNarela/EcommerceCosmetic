@@ -8,17 +8,33 @@ import { GrUserAdmin } from "react-icons/gr";
 
 import { addtoCart } from '../redux/slices/cartSlice';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { MyContext } from '../Pages/LoginContext';
 
+import { useContext } from 'react';
+
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useSelector, useDispatch } from 'react-redux';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import img from "../images/Shine.png"
 
 const TopNavbar = () => {
 
+    const { logedIn, setLogedIn, uname, setUname, uemail, setUemail } = useContext(MyContext);
+    const [adminid, setAdminid] = useState("");
+    const [password, setPassword] = useState("");
+    const [show, setShow] = useState(false);
     const cartlen = useSelector((state) => state.mycart.cart);
 
     const cartCount = cartlen.length;
     const href = useRef()
     const reference = useRef(null)
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const [displaySet, setDisplaySet] = useState(false)
 
@@ -48,7 +64,29 @@ const TopNavbar = () => {
 
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        try {
+            let api = `${Base_URL}admin/adminlogin`;
+            const response = await axios.post(api, { adminid: adminid, password: password });
+            console.log(response);
+            messageApi.success(response.data.msg);
+            setShow(false);
+            localStorage.setItem("admin", response.data.Admin.name);
+            navigate("/admindashboard");
+        } catch (error) {
+            messageApi.error(error.response.data.msg);
+        }
+    }
+
+    const logoutFeature = () => {
+        localStorage.clear();
+        setUname("")
+        setUemail("");
+        setLogedIn(false);
+        navigate("/");
+    }
 
 
 
@@ -71,13 +109,60 @@ const TopNavbar = () => {
                         <div id="nav3inside" className="nav3inside">
 
 
-                            <Link href="https://www.instagram.com/"
+                            <Link 
+
+                                
                             ><i className="bx bxl-instagram"></i
                             ></Link>
+
+
+
+
+                            {
+                                logedIn ? (<>
+                                    <DropdownButton
+                                        variant="dark" className="text-white"
+
+                                        title={"Logout"}
+                                    >
+                                        <Dropdown.Item eventKey="1" as={Link} to="/home"  >Admin Logout</Dropdown.Item>
+                                        <Dropdown.Item eventKey="2" as={Link} to="/home" onClick={logoutFeature}  > {uname ? uname : "Customer"} Logout </Dropdown.Item>
+
+
+                                    </DropdownButton>
+
+
+
+                                </>) : (<>
+
+                                    <DropdownButton
+                                        as={ButtonGroup}
+
+                                        variant="dark" className="text-white"
+
+
+
+                                        title={"Login"}
+                                    >
+                                            <Dropdown.Item eventKey="1" as={Link}  onClick={handleShow}   >Admin Login</Dropdown.Item>
+                                        <Dropdown.Item eventKey="2" as={Link} to="/login"  >Customer Login </Dropdown.Item>
+
+
+                                    </DropdownButton>
+                                </>)
+
+
+
+
+                            }
+
+
+
+
                             <Link to="admin"
                             >  <i class='bx bxs-log-in'></i> </Link>
                             <Link to="login" ><i className="bx bx-user"></i></Link>
-                            <Link to="cartitem" style={{ position: "relative" }} ><i className="bx bx-cart"></i>{cartCount >0  && <span className='cartspan'    >{cartlen.length}   </span>} </Link>
+                            <Link to="cartitem" style={{ position: "relative" }} ><i className="bx bx-cart"></i>{cartCount > 0 && <span className='cartspan'    >{cartlen.length}   </span>} </Link>
                         </div>
                         <Link id="cart" to="cartitem"><i className="bx bx-cart"></i><span>
                         </span>   </Link>
@@ -127,6 +212,38 @@ const TopNavbar = () => {
             </Navbar> */}
 
 
+
+            <div>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Admin Login</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+
+                        <Form>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Enter Id</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Admin ID"
+                                    value={adminid} onChange={(e) => { setAdminid(e.target.value) }} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Enter Password</Form.Label>
+                                <Form.Control type="password" placeholder="Password"
+                                    value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                            </Form.Group>
+                            <Button variant="primary" type="submit" onClick={handleSubmit}>
+                                Login
+                            </Button>
+                        </Form>
+
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         </>
     )
 }

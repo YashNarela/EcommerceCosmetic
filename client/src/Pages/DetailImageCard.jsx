@@ -3,6 +3,10 @@ import { useState, useEffect, useContext } from "react";
 import "../css/DetailCard.scss"
 import { addData } from "../redux/slices/setDataSlice"
 
+import { MdDelete } from "react-icons/md";
+
+import { addtoCart, qntyIncrease, qntyDecrease, productRemove } from "../redux/slices/cartSlice"
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import axios from "axios"
@@ -10,6 +14,7 @@ import { useParams } from 'react-router';
 const DetailImageCard = () => {
 
 
+    const [qty,setQty]=useState(1)
 
     const { id } = useParams()
 
@@ -109,14 +114,14 @@ const DetailImageCard = () => {
 
                     <ul class="details">
                         <li><strong>Brand:</strong> {mydata.brand}</li>
-                        <li><strong>Material:</strong> Cotton 80%</li>
-                        <li><strong>Delivery:</strong> USA, Europe</li>
+                        {/* <li><strong>Material:</strong> Cotton 80%</li>
+                        <li><strong>Delivery:</strong> USA, Europe</li> */}
                     </ul>
 
                     <div class="options">
                         <div class="quantity">
                             <label for="qty">Quantity</label>
-                            <input type="number" id="qty" defaultValue="1" min="1" />
+                            <input type="number"  id="qty" defaultValue="1" min="1"  value={qty} onChange={(e)=>{setQty(e.target.value)}} />
 
                         </div>
                         <div class="size">
@@ -140,8 +145,8 @@ const DetailImageCard = () => {
                     </div>
 
                     <div class="actions">
-                        <button class="add-cart">🛒 ADD TO CART</button>
-                        <button class="wishlist">❤️</button>
+                        <button class="add-cart"  onClick={() => { dispatch(addtoCart({...mydata,qty:qty})) }}   >🛒 ADD TO CART</button>
+                        <button class="wishlist"  onClick={()=>{dispatch(productRemove(mydata._id))}}    ><MdDelete /></button>
                     </div>
                 </div>
             </div>

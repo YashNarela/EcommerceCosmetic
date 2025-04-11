@@ -157,7 +157,7 @@ const CartItem = () => {
 
 
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="row main align-items-center">
                   <div className="col-2">
                     <img className="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg" alt="item" />
@@ -174,8 +174,8 @@ const CartItem = () => {
                   <div className="col">
                     &euro; 44.00 <span className="close"  >&#10005;</span>
                   </div>
-                </div>
-              </div>
+                </div>t
+              </div> */}
 
 
 

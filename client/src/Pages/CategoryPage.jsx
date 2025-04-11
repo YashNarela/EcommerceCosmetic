@@ -4,6 +4,8 @@ import "../css/AddCart.scss"
 import { useLocation } from 'react-router'
 import { CiHeart } from "react-icons/ci"
 import { useDispatch, useSelector } from 'react-redux'
+import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router'
 import { addtoCart, qntyIncrease, qntyDecrease, productRemove } from "../redux/slices/cartSlice"
 
 const CategoryPage = () => {
@@ -22,11 +24,29 @@ const CategoryPage = () => {
     const dispatch = useDispatch();
     const selectit = useSelector((state) => state.setit.alldata);
 
+    const navigate = useNavigate()
+
+    const ProductHandle = async (id) => {
+
+        try {
+
+            navigate(`/product/${id}`);
+
+        } catch (error) {
+
+        }
+    }
+
+
+
+
     async function GetCategory() {
         try {
             let newcat = selectit.flat();
             let filterIt = newcat.filter((ele) => ele.category === item.toLowerCase());
             if (filterIt) {
+                console.log(filterIt);
+                
                 setCategoryData(filterIt);
             }
         } catch (error) {
@@ -48,7 +68,7 @@ const CategoryPage = () => {
             const max = Math.max(...prices);
             setMinPrice(min);
             setMaxPrice(max);
-            setPriceRange(max); // Default show all products
+            setPriceRange(max);
         }
     }, [categoryData]);
 
@@ -88,7 +108,7 @@ const CategoryPage = () => {
             </div>
             <div class="product-details">
                 <h2>{ele.description}</h2>
-                <p>{ele.price + 300} <span class="discount">{ele.price}</span> <span class="offer">70% off</span></p>
+                <p> <span className='realPrice'  >{ele.price + 300}   </span>   <span class="discount">{ele.price}</span> <span class="offer">70% off</span></p>
                 <div class="product-color">
                     <span>Color: <strong>olive</strong></span>
                     <div class="colors">
@@ -97,7 +117,7 @@ const CategoryPage = () => {
                         <span class="color purple"></span>
                     </div>
                 </div>
-                <div class="product-size">
+                {/* <div class="product-size">
                     <span>Size: <strong>37</strong></span>
                     <div class="sizes">
                         <span class="size">35</span>
@@ -107,11 +127,12 @@ const CategoryPage = () => {
                         <span class="size">39</span>
                         <span class="size">40</span>
                     </div>
-                </div>
+                </div> */}
                 <div class="product-actions">
-                    <button class="add-to-cart">Add to cart</button>
-                    <button class="more-details">More details</button>
-                    <span class="wishlist"><CiHeart /></span>
+                    <button class="add-to-cart"  onClick={() => { dispatch(addtoCart({...ele,qty:1})) }}   >Add to cart</button>
+                    <button class="more-details" onClick={() => { ProductHandle(ele._id) }}    >More details</button>
+                      <span class="wishlist"  onClick={()=>{dispatch(productRemove(ele._id))}}    ><MdDelete /></span>
+                    <span class="wishlist"   ></span>
                 </div>
             </div>
         </div>
